@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insta EJS</title>
+    <style>
+        img{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>This page belongs to <%=data.name %></h1>
+    <p>No.of followers: <%= data.followers %> &nbsp;&nbsp;&nbsp;&nbsp;No.of followers: <%= data.following %> </p>
+
+   <% for (let post of data.posts) { %>
+        <img src= "<%=post.image%>" alt = "src image">
+
+        <p>Likes : <%= post.likes%> &nbsp;&nbsp;&nbsp;&nbsp;Comments : <%= post.comments%> </p>
+   <% }%>
+
+
+    <button>Follow</button>
+    <button>Message</button>
+</body>
+</html>
