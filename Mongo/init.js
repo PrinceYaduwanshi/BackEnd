@@ -13,12 +13,12 @@ async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/whatsapp");
 };
 
-const allchats=[
+let allchats=[
     {
-    from:"Prince",
-    to:"Prem",
-    msg:"send the details",
-    created_at:new Date(),
+        from:"Prince",
+        to:"Prem",
+        msg:"send the details",
+        created_at:new Date(),
     },
     {
         from:"Tony",

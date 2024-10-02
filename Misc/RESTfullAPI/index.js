@@ -10,7 +10,10 @@ const port = 8000;
 app.use(methodOverride("_method"));//for giving patch request
 
 app.use(express.urlencoded({extended:true}));
+
+app.set("view engine" , "views");
 app.set("views" , path.join(__dirname,"views"));
+
 app.use(express.static(path.join(__dirname,"public")));
 
 app.listen(port ,(req,res)=>{
@@ -23,7 +26,7 @@ let posts=[
     {   
         id:uuidv4(),
         username:"Prince",
-        content:"I am KIITIAN",
+        content:"I am boscoite",
     },
     {
         id:uuidv4(),
@@ -42,10 +45,10 @@ app.get("/posts" , (req,res)=>{
     res.render("home.ejs" ,{posts});
 });
 
+
 app.get("/posts/new" , (req,res)=>{
     res.render("new.ejs");
 });//form submitted
-
 app.post("/posts" , (req,res)=>{
     let {username , content}=req.body;
     let id=uuidv4();
@@ -53,11 +56,15 @@ app.post("/posts" , (req,res)=>{
     res.redirect("/posts");
 });//post added
 
+
+
 app.get("/posts/:id" , (req,res)=>{
     let {id} = req.params;
     let post=posts.find((p) => id == p.id);
     res.render("show.ejs",{post});
 })//showing post for specific detail
+
+
 
 
 // updating content of post
@@ -73,6 +80,8 @@ app.get("/posts/:id/edit" , (req,res)=>{
     let post=posts.find((p) => id == p.id);
     res.render("edit.ejs",{post});
 });
+
+
 
 // deleting post same as patch 
 app.delete("/posts/:id" , (req,res)=>{

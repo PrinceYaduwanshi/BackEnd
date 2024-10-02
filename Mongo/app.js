@@ -73,6 +73,7 @@ app.get("/chats/:id/edit" , async(req,res)=>{
 // Update Route
 app.put("/chats/:id" , async (req,res)=>{
     let {id}=req.params;
+    // msg renamed to newMsg
     let {msg:newMsg}=req.body;
     let updatedChat= await Chat.findByIdAndUpdate(id,
         { msg : newMsg},
@@ -86,5 +87,6 @@ app.put("/chats/:id" , async (req,res)=>{
 app.delete("/chats/:id" , async(req,res)=>{
     let{id}=req.params;
     let deletedchat = await Chat.findByIdAndDelete(id);
+    // res.json({ message: `Chat with ID ${id} deleted successfully` });
     res.redirect("/chats");
 });

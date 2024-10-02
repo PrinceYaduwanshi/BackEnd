@@ -21,7 +21,7 @@ app.get("/" , (req,res)=>{
     try{
         connection.query(q,(err,result)=>{
             if(err)throw err;
-            console.log(result[0]["count(*)"]);
+            console.log(result[0]["count(*)"]);//returns a object with keyname count(*)
             let count=result[0]["count(*)"];
             res.render("home.ejs" , {count});
         })
@@ -30,6 +30,8 @@ app.get("/" , (req,res)=>{
     }
     
 })
+
+
 // show route
 app.get("/user" , (req,res)=>{
     let q=`SELECT * FROM user`;
@@ -43,6 +45,7 @@ app.get("/user" , (req,res)=>{
         console.log(err);
     }
 });
+
 
 // edit route
 app.get("/user/:id/edit" , (req,res)=>{
@@ -62,6 +65,7 @@ app.get("/user/:id/edit" , (req,res)=>{
 app.patch("/user/:id" , (req,res)=>{
     let {id} = req.params;
     let q=`SELECT * FROM user WHERE id="${id}"`;
+    // fromPass is stored in password and same for username
     let{password:formPass , username:newUserName} = req.body;
     try{
         connection.query(q,(err,result)=>{
